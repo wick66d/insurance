@@ -19,7 +19,7 @@
                     <a class="nav-link" href="{{ route('owners.index') }}">Owners</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('owners.create') }}">Add New Owner</a>
+                    <a class="nav-link" href="{{ route('cars.index') }}">Cars</a>
                 </li>
             </ul>
         </div>
