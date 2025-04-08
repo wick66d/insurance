@@ -3,11 +3,11 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Cars</h5>
+            <h5 class="mb-0">{{ __('messages.cars') }}</h5>
             <div>
-                <a href="{{route('owners.index')}}" class="btn btn-info me-2">View Owners</a>
+                <a href="{{route('owners.index')}}" class="btn btn-info me-2">{{ __('messages.owners') }}</a>
                 @if(Auth::user()->isAdmin())
-                <a href="{{route('cars.create')}}" class="btn btn-success">Add new car</a>
+                <a href="{{route('cars.create')}}" class="btn btn-success">{{ __('messages.add_new_car') }}</a>
                 @endif
             </div>
         </div>
@@ -16,12 +16,12 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Registration Number</th>
-                        <th>Brand</th>
-                        <th>Model</th>
-                        <th>Owner</th>
-                        <th>Actions</th>
+                        <th>{{ __('messages.id') }}</th>
+                        <th>{{ __('messages.registration_number') }}</th>
+                        <th>{{ __('messages.brand') }}</th>
+                        <th>{{ __('messages.model') }}</th>
+                        <th>{{ __('messages.owner') }}</th>
+                        <th>{{ __('messages.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,18 +39,18 @@
                             <td>
                                 <form action="{{route('cars.destroy', $car->id)}}" method="POST">
                                     @if(Auth::user()->isAdmin())
-                                    <a class="btn btn-info btn-sm" href="{{route('cars.show', $car->id) }}">View</a>
-                                    <a class="btn btn-primary btn-sm" href="{{route('cars.edit', $car->id)}}">Edit</a>
+                                    <a class="btn btn-info btn-sm" href="{{route('cars.show', $car->id) }}">{{ __('messages.view') }}</a>
+                                    <a class="btn btn-primary btn-sm" href="{{route('cars.edit', $car->id)}}">{{ __('messages.edit') }}</a>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this car?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this car?')">{{ __('messages.delete') }}</button>
                                     @endif
                                 </form>
                             </td>
                         </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">No cars found</td>
+                        <td colspan="6" class="text-center">{{ __('messages.no_cars_found') }}</td>
                     </tr>
                     @endforelse
                     </tbody>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ShortCodeController;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('cars', CarController::class);
 
     Route::get('/owners', [OwnerController::class, 'index'])->name('owners.index');
-
+Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 
 

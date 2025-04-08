@@ -9,7 +9,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('owners.index') }}">Car Insurance</a>
+        <a class="navbar-brand" href="{{ url('/') }}">{{ __('messages.car_insurance') }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,19 +17,29 @@
             <ul class="navbar-nav me-auto">
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('owners.index') }}">Owners</a>
+                    <a class="nav-link" href="{{ route('owners.index') }}">{{__('messages.owners')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('cars.index') }}">Cars</a>
+                    <a class="nav-link" href="{{ route('cars.index') }}">{{__('messages.cars')}}</a>
                 </li>
                 @if(Auth::user()->isAdmin())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('shortcodes.index')}}">ShortCodes</a>
+                    <a class="nav-link" href="{{route('shortcodes.index')}}">{{__('messages.shortcodes')}}</a>
                 </li>
                     @endif
                 @endauth
             </ul>
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownLanguage" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{App::getLocale() == 'en' ? 'English' : 'Lietuvių' }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLanguage">
+                        <li><a href="{{route('lang.switch', 'en')}}" class="dropdown-item">English</a></li>
+                        <li><a href="{{route('lang.switch', 'lt')}}" class="dropdown-item">Lietuvių</a></li>
+
+                    </ul>
+                </li>
                 @guest
                     @if (Route::has('login'))
                     <li class="nav-item">

@@ -29,7 +29,7 @@ class ShortCodeController extends Controller
         ]);
 
         ShortCode::create($request->all());
-        return redirect()->route('shortcodes.index')->with('success', 'Shortcode created!');
+        return redirect()->route('shortcodes.index')->with('success', __('messages.created_successfully', ['item'=>__('messages.shortcode')]));
     }
 
     public function show(ShortCode $shortcode){
@@ -47,11 +47,13 @@ class ShortCodeController extends Controller
         ]);
 
         $shortcode->update($request->all());
-        return redirect()->route('shortcodes.index')->with('success', 'Shortcode updated!');
+        return redirect()->route('shortcodes.index')->with('success', __('messages.updated_successfully', ['item'=>__('messages.shortcode')]));
+
     }
 
     public function destroy(ShortCode $shortcode){
         $shortcode->delete();
-        return redirect()->route('shortcodes.index')->with('success', 'Shortcode deleted!');
+        return redirect()->route('shortcodes.index')->with('success', __('messages.deleted_successfully', ['item'=>__('messages.shortcode')]));
+
     }
 }

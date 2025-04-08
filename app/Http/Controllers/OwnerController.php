@@ -37,7 +37,7 @@ class OwnerController extends Controller
 
         Owner::create($request->all());
         return redirect()->route('owners.index')
-            ->with('success', 'Owner created successfully!');
+            ->with('success', __('messages.created_succesfully', ['item'=>__('messages.owner')]));
     }
 
 
@@ -64,13 +64,13 @@ class OwnerController extends Controller
 
         $owner->update($request->all());
         return redirect()->route('owners.index')
-            ->with('success', 'Owner updated successfully!');
+            ->with('success', __('messages.updated_succesfully', ['item'=>__('messages.owner')]));
     }
 
     public function destroy(Owner $owner)
     {
         $owner->delete();
         return redirect()->route('owners.index')
-            ->with('success', 'Owner deleted successfully!');
+            ->with('success', __('messages.deleted', ['item'=>__('messages.owner')]));
     }
 }

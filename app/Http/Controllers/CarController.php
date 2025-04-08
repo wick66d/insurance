@@ -31,7 +31,7 @@ class CarController extends Controller
         ]);
 
         Car::create($request->all());
-        return redirect()->route('cars.index')->with('success', 'Car created successfully!');
+        return redirect()->route('cars.index')->with('success', __('messages.created_successfully', ['item' => __('messages.car')]));
 
     }
 
@@ -53,12 +53,12 @@ class CarController extends Controller
         ]);
 
         $car->update($request->all());
-        return redirect()->route('cars.index')->with('success', 'Car updated successfully!');
+        return redirect()->route('cars.index')->with('success', __('messages.updated_successfully', ['item' => __('messages.car')]));
     }
 
     public function destroy(Car $car)
     {
         $car->delete();
-        return redirect()->route('cars.index')->with('success', 'Car deleted successfully!');
+        return redirect()->route('cars.index')->with('success', __('messages.deleted_successfully', ['item' => __('messages.car')]));
     }
 }
