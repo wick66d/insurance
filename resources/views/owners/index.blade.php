@@ -3,8 +3,10 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Car Insurance Owners</h5>
+            <h5 class="mb-0">[[COMPANY_NAME]] - Car Insurance Owners</h5>
+            @if(Auth::user()->isAdmin())
             <a href="{{ route('owners.create') }}" class="btn btn-success">Add New Owner</a>
+            @endif
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -32,10 +34,13 @@
                             <td>
                                 <form action="{{ route('owners.destroy', $owner->id) }}" method="POST">
                                     <a class="btn btn-info btn-sm" href="{{ route('owners.show', $owner->id) }}">View</a>
+
+                                    @if(Auth::user()->isAdmin())
                                     <a class="btn btn-primary btn-sm" href="{{ route('owners.edit', $owner->id) }}">Edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this owner?')">Delete</button>
+                                    @endif
                                 </form>
                             </td>
                         </tr>

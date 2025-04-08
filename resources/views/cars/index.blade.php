@@ -6,7 +6,9 @@
             <h5 class="mb-0">Cars</h5>
             <div>
                 <a href="{{route('owners.index')}}" class="btn btn-info me-2">View Owners</a>
+                @if(Auth::user()->isAdmin())
                 <a href="{{route('cars.create')}}" class="btn btn-success">Add new car</a>
+                @endif
             </div>
         </div>
         <div class="card-body">
@@ -36,11 +38,13 @@
                             </td>
                             <td>
                                 <form action="{{route('cars.destroy', $car->id)}}" method="POST">
-                                    <a class="btn btn-info btn-sm" href="{{route('cars.show', $car->id)}}">View</a>
+                                    @if(Auth::user()->isAdmin())
+                                    <a class="btn btn-info btn-sm" href="{{route('cars.show', $car->id) }}">View</a>
                                     <a class="btn btn-primary btn-sm" href="{{route('cars.edit', $car->id)}}">Edit</a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this car?')">Delete</button>
+                                    @endif
                                 </form>
                             </td>
                         </tr>

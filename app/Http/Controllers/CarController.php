@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index(){
         $cars = Car::with('owner')->get();
         return view('cars.index', compact('cars'));
