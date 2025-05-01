@@ -17,7 +17,7 @@
                     <thead>
                     <tr>
                         <th>{{ __('messages.id') }}</th>
-                        <th>{{ __('messages.registration_number') }}</th>
+                        <th>{{ __('messages.reg_number') }}</th>
                         <th>{{ __('messages.brand') }}</th>
                         <th>{{ __('messages.model') }}</th>
                         <th>{{ __('messages.owner') }}</th>

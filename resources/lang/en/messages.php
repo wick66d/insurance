@@ -12,10 +12,11 @@ return[
     'car_details'=>'Car Details',
     'add_new_car'=>'Add New Car',
     'edit_car'=>'Edit Car',
-    'reg_number'=>'Reg Number',
+    'reg_number'=>'Registration Number',
     'brand'=>'Brand',
     'model'=>'Model',
     'owner'=>'Owner',
+    'car' => 'Car',
     'actions'=>'Actions',
     'no_cars_found'=>'No Cars Found',
 
@@ -61,5 +62,40 @@ return[
     'dashboard'=>'Dashboard',
     'logged_in'=>'Logged In',
     'contact_us'=>'Contact Us',
+
+    // Validation messages for cars
+    'reg_number_required' => 'Registration number is required',
+    'reg_number_format' => 'Registration number must be in format AAA000 (3 uppercase letters followed by 3 digits)',
+    'reg_number_unique' => 'This registration number is already in use',
+    'brand_required' => 'Brand is required',
+    'brand_min' => 'Brand name must be at least 2 characters',
+    'model_required' => 'Model is required',
+    'model_min' => 'Model name must be at least 1 character',
+    'owner_required' => 'Owner is required',
+    'owner_not_exist' => 'Selected owner does not exist',
+
+    // Validation messages for owners
+    'name_required' => 'Name is required',
+    'name_min' => 'Name must be at least 2 characters',
+    'surname_required' => 'Surname is required',
+    'surname_min' => 'Surname name must be at least 2 characters',
+    'phone_required' => 'Phone number is required',
+    'phone_format' => 'Phone number must contain 8-15 digits and may start with "+"',
+    'email_required' => 'Email is required',
+    'email_format' => 'Please enter a valid email address',
+    'email_unique' => 'This email is already in use',
+    'address_required' => 'Address is required',
+    'address_min' => 'Address name must be at least 5 characters',
+
+    'enter_reg_number' => 'Enter registration number (e.g., ABC123)',
+    'reg_number_help' => 'Format: 3 uppercase letters followed by 3 digits',
+    'enter_brand' => 'Enter car brand (e.g., Toyota)',
+    'enter_model' => 'Enter car model (e.g., Corolla)',
+    'enter_name' => 'Enter first name',
+    'enter_surname' => 'Enter last name',
+    'enter_phone' => 'Enter phone number (e.g., +37061234567)',
+    'phone_help' => 'Include country code if applicable',
+    'enter_email' => 'Enter email address',
+    'enter_address' => 'Enter full address',
 
 ];
