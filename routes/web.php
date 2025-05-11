@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarPhotoController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ShortCodeController;
@@ -39,5 +40,8 @@ Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang
        Route::get('/shortcodes/{shortcode}', [ShortcodeController::class, 'show'])->name('shortcodes.show');
     });
     Route::get('/owners/{owner}', [OwnerController::class, 'show'])->name('owners.show');
+
+    Route::post('/cars/{car}/photos', [CarPhotoController::class, 'store'])->name('car.photos.store');
+    Route::delete('/photos/{photo}', [CarPhotoController::class, 'destroy'])->name('car.photos.destroy');
 
 });

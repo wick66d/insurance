@@ -98,4 +98,16 @@ return[
     'enter_email' => 'Enter email address',
     'enter_address' => 'Enter full address',
 
+    'car_photos' => 'Car Photos',
+    'upload_photos' => 'Upload Photos',
+    'photos_required' => 'Please select at least one photo to upload',
+    'file_must_be_image' => 'File must be an image',
+    'allowed_image_types' => 'Allowed image types: JPEG, PNG, JPG, GIF, SVG',
+    'image_max_size' => 'Maximum image size is 2MB',
+    'allowed_image_types_help' => 'You can upload JPEG, PNG, JPG, SVG or GIF files (max 2MB each)',
+    'photos_uploaded' => 'Photos uploaded successfully',
+    'photo_deleted' => 'Photo deleted successfully',
+    'no_photos' => 'No photos available for this car',
+    'upload' => 'Upload',
+
 ];

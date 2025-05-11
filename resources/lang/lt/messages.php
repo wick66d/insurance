@@ -104,4 +104,16 @@ return [
     'phone_help' => 'Jei reikia, pridėkite šalies kodą',
     'enter_email' => 'Įveskite el. pašto adresą',
     'enter_address' => 'Įveskite pilną adresą',
+
+    'car_photos' => 'Automobilio nuotraukos',
+    'upload_photos' => 'Įkelti nuotraukas',
+    'photos_required' => 'Pasirinkite bent vieną nuotrauką įkėlimui',
+    'file_must_be_image' => 'Failas turi būti nuotrauka',
+    'allowed_image_types' => 'Leistini nuotraukų formatai: JPEG, PNG, JPG, GIF, SVG',
+    'image_max_size' => 'Maksimalus nuotraukos dydis yra 2MB',
+    'allowed_image_types_help' => 'Galite įkelti JPEG, PNG, JPG, SVG arba GIF failus (maks. 2MB kiekvienas)',
+    'photos_uploaded' => 'Nuotraukos sėkmingai įkeltos',
+    'photo_deleted' => 'Nuotrauka sėkmingai ištrinta',
+    'no_photos' => 'Šiam automobiliui nėra nuotraukų',
+    'upload' => 'Įkelti',
 ];

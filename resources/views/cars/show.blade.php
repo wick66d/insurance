@@ -27,6 +27,28 @@
                     </a>
                 </div>
             </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ __('messages.car_photos') }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @forelse($car->photos as $photo)
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img src="{{ asset('storage/car_photos/' . $photo->filename) }}" class="card-img-top" alt="{{ $photo->original_filename }}">
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-12">
+                                <p>{{ __('messages.no_photos') }}</p>
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+
             <div class="row mt-4">
                 <div class="col-md-12">
                     <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">{{ __('messages.edit') }}</a>

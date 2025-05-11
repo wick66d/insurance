@@ -60,6 +60,51 @@
                     <a href="{{ route('cars.index') }}" class="btn btn-secondary">{{ __('messages.cancel') }}</a>
                 </div>
             </form>
+
+            <!-- Photos section -->
+            <div class="mt-5">
+                <h5>{{ __('messages.car_photos') }}</h5>
+
+                <div class="row">
+                    @forelse($car->photos as $photo)
+                        <div class="col-md-3 mb-3">
+                            <div class="card">
+                                <img src="{{ asset('storage/car_photos/' . $photo->filename) }}" class="card-img-top" alt="{{ $photo->original_filename }}">
+                                <div class="card-body">
+                                    <p class="card-text small">{{ $photo->original_filename }}</p>
+                                    <form action="{{ route('car.photos.destroy', $photo->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ __('messages.delete_confirm') }}')">
+                                            {{ __('messages.delete') }}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-12">
+                            <p>{{ __('messages.no_photos') }}</p>
+                        </div>
+                    @endforelse
+                </div>
+
+                <form action="{{ route('car.photos.store', $car->id) }}" method="POST" enctype="multipart/form-data" class="mt-3">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="photos" class="form-label">{{ __('messages.upload_photos') }}</label>
+                        <input type="file" name="photos[]" id="photos" class="form-control @error('photos') is-invalid @enderror @error('photos.*') is-invalid @enderror" multiple>
+                        @error('photos')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        @error('photos.*')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <small class="form-text text-muted">{{ __('messages.allowed_image_types_help') }}</small>
+                    </div>
+                    <button type="submit" class="btn btn-success">{{ __('messages.upload') }}</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
