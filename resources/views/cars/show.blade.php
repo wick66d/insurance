@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             <div class="row mb-2">
-                <div class="col-md-3 fw-bold">{{ __('messages.registration_number') }}:</div>
+                <div class="col-md-3 fw-bold">{{ __('messages.reg_number') }}:</div>
                 <div class="col-md-9">{{ $car->reg_number }}</div>
             </div>
             <div class="row mb-2">
@@ -51,7 +51,9 @@
 
             <div class="row mt-4">
                 <div class="col-md-12">
+                    @can('update', $car)
                     <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">{{ __('messages.edit') }}</a>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -29,7 +29,9 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-12">
+                    @can('update', $owner)
                     <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-primary">{{ __('messages.edit') }}</a>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -12,6 +12,10 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    const ROLE_ADMIN = 'admin';
+    const ROLE_READ_ONLY = 'viewer';
+    const ROLE_REGULAR = 'regular';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -47,10 +51,21 @@ class User extends Authenticatable
         ];
     }
 
+    public function owners()
+    {
+        return $this->hasMany(Owner::class);
+    }
     public function isAdmin(): bool{
-        return $this->role === 'admin';
+        return $this->role === self::ROLE_ADMIN;
     }
 
+    public function isReadOnly(): bool{
+        return $this->role === self::ROLE_READ_ONLY;
+    }
+
+    public function isRegular(): bool{
+        return $this->role === self::ROLE_REGULAR;
+    }
     public function isViewer(): bool{
         return $this->role === 'viewer';
     }

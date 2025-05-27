@@ -4,9 +4,9 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">[[COMPANY_NAME]] - {{ __('messages.car_insurance') }} {{ __('messages.owners') }}</h5>
-            @if(Auth::user()->isAdmin())
+            @can('create', App\Models\Owner::class)
             <a href="{{ route('owners.create') }}" class="btn btn-success">{{ __('messages.add_new_owner') }}</a>
-            @endif
+            @endcan
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -35,12 +35,15 @@
                                 <form action="{{ route('owners.destroy', $owner->id) }}" method="POST">
                                     <a class="btn btn-info btn-sm" href="{{ route('owners.show', $owner->id) }}">{{ __('messages.view') }}</a>
 
-                                    @if(Auth::user()->isAdmin())
+                                    @can('update', $owner)
                                     <a class="btn btn-primary btn-sm" href="{{ route('owners.edit', $owner->id) }}">{{ __('messages.edit') }}</a>
+                                    @endcan
+
+                                    @can('delete', $owner)
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this owner?')">{{ __('messages.delete') }}</button>
-                                    @endif
+                                    @endcan
                                 </form>
                             </td>
                         </tr>

@@ -5,21 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
 
     public function __construct(){
         $this->middleware('auth');
+        $this->authorizeResource(Car::class, 'car');
     }
 
     public function index(){
-        $cars = Car::with('owner')->get();
+        if(Auth::user()->isRegular()){
+            $userOwnerIds = Owner::where('user_id', Auth::id())->pluck('id');
+            $cars = Car::whereIn('owner_id', $userOwnerIds)->with('owner')->get();
+        } else {
+            $cars = Car::with('owner')->get();
+        }
         return view('cars.index', compact('cars'));
     }
 
     public function create(){
-        $owners = Owner::all();
+        if(Auth::user()->isRegular()){
+            $owners = Owner::where('user_id', Auth::id())->get();
+        } else{
+            $owners = Owner::all();
+        }
         return view('cars.create', compact('owners'));
     }
 
@@ -52,7 +63,11 @@ class CarController extends Controller
     }
 
     public function edit(Car $car){
-        $owners = Owner::all();
+        if(Auth::user()->isRegular()){
+            $owners = Owner::where('user_id', Auth::id())->get();
+        } else {
+            $owners = Owner::all();
+        }
         return view('cars.edit', compact('car', 'owners'));
     }
 

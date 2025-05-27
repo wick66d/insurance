@@ -15,14 +15,20 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if(!$request->user() || $request->user()->role !== $role){
-            if($request->user() && $request->user()->role ===  'viewer' && $role === 'admin'){
-                return redirect()->route('cars.index')
-                    ->with('error', 'You do not have permission to perform this action.');
-            }
-
+        if(!$request->user()){
             return redirect()->route('login');
         }
+
+        if($role === 'admin' && !$request->user()->isAdmin()){
+            return redirect()->route('home')
+                ->with('error', 'You do not have permission to access this page.');
+        }
+
+        if ($role === 'regular' && !($request->user()->isRegular() || $request->user()->isAdmin())) {
+            return redirect()->route('home')
+                ->with('error', 'You do not have permission to access this page.');
+        }
+
         return $next($request);
     }
 }

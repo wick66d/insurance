@@ -4,17 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin')->only(['create', 'store', 'edit', 'update', 'destroy']);
+        $this->authorizeResource(Owner::class, 'owner');
     }
     public function index()
     {
-        $owners = Owner::all();
+        if(Auth::user()->isRegular()) {
+            $owners = Owner::where('user_id', Auth::id())->get();
+        } else{
+            $owners = Owner::all();
+        }
+
         return view('owners.index', compact('owners'));
     }
 
@@ -27,7 +33,7 @@ class OwnerController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:50|min:2',
             'surname' => 'required|string|max:50|min:2',
             'phone' =>
@@ -48,7 +54,10 @@ class OwnerController extends Controller
             'address.min' => __('messages.address_min'),
         ]);
 
-        Owner::create($request->all());
+        $validated['user_id'] = Auth::id();
+
+        Owner::create($validated);
+
         return redirect()->route('owners.index')
             ->with('success', __('messages.created_successfully', ['item'=>__('messages.owner')]));
     }
@@ -99,3 +108,4 @@ class OwnerController extends Controller
             ->with('success', __('messages.deleted_successfully', ['item'=>__('messages.owner')]));
     }
 }
+

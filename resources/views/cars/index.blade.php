@@ -6,9 +6,9 @@
             <h5 class="mb-0">{{ __('messages.cars') }}</h5>
             <div>
                 <a href="{{route('owners.index')}}" class="btn btn-info me-2">{{ __('messages.owners') }}</a>
-                @if(Auth::user()->isAdmin())
+                @can('create', App\Models\Owner::class)
                 <a href="{{route('cars.create')}}" class="btn btn-success">{{ __('messages.add_new_car') }}</a>
-                @endif
+                @endcan
             </div>
         </div>
         <div class="card-body">
@@ -38,13 +38,15 @@
                             </td>
                             <td>
                                 <form action="{{route('cars.destroy', $car->id)}}" method="POST">
-                                    @if(Auth::user()->isAdmin())
                                     <a class="btn btn-info btn-sm" href="{{route('cars.show', $car->id) }}">{{ __('messages.view') }}</a>
+                                    @can('update', $car)
                                     <a class="btn btn-primary btn-sm" href="{{route('cars.edit', $car->id)}}">{{ __('messages.edit') }}</a>
+                                    @endcan
+                                    @can('delete', $car)
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this car?')">{{ __('messages.delete') }}</button>
-                                    @endif
+                                    @endcan
                                 </form>
                             </td>
                         </tr>
